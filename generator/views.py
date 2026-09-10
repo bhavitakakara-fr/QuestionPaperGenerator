@@ -30,6 +30,19 @@ def home(request):
         difficulty = request.POST.get('difficulty')
         question_type = request.POST.get('question_type')
 
+        # -----------------------------------------
+        # READ TOTAL MARKS
+        # -----------------------------------------
+
+        try:
+            total_marks = int(marks)
+        except (ValueError, TypeError):
+            total_marks = 30
+
+        # -----------------------------------------
+        # FILTER QUESTION BANK
+        # -----------------------------------------
+
         selected_questions = questions.copy()
 
         # Filter by unit
@@ -53,62 +66,92 @@ def home(request):
                 if q["type"] == question_type
             ]
 
-        # Separate questions by marks
-        section_a = [
+        # -----------------------------------------
+        # SEPARATE QUESTIONS BY MARKS
+        # -----------------------------------------
+
+        section_a_pool = [
             q for q in selected_questions
             if q["marks"] == 2
         ]
 
-        section_b = [
+        section_b_pool = [
             q for q in selected_questions
             if q["marks"] == 5
         ]
 
-        section_c = [
+        section_c_pool = [
             q for q in selected_questions
             if q["marks"] == 10
         ]
 
-        # Read total marks
-        try:
-            total_marks = int(marks)
-        except (ValueError, TypeError):
-            total_marks = 30
+        # -----------------------------------------
+        # QUESTION PAPER PATTERN
+        # -----------------------------------------
 
-        # Default question pattern
-        section_a_count = 3
-        section_b_count = 2
-        section_c_count = 1
-
-        # 30-mark paper
         if total_marks == 30:
+
             section_a_count = 5
             section_b_count = 2
             section_c_count = 1
 
-        # 60-mark paper
         elif total_marks == 60:
+
             section_a_count = 5
             section_b_count = 4
             section_c_count = 3
 
-        # Randomly select questions
+        else:
+
+            # Default pattern for unsupported marks
+            section_a_count = 5
+            section_b_count = 2
+            section_c_count = 1
+
+        # -----------------------------------------
+        # CHECK WHETHER ENOUGH QUESTIONS EXIST
+        # -----------------------------------------
+
+        if (
+            len(section_a_pool) < section_a_count
+            or len(section_b_pool) < section_b_count
+            or len(section_c_pool) < section_c_count
+        ):
+
+            return render(request, 'home.html', {
+                'error':
+                    'Not enough questions available for the selected '
+                    'filters. Please select All Units or Balanced difficulty.'
+            })
+
+        # -----------------------------------------
+        # RANDOMLY SELECT QUESTIONS
+        # -----------------------------------------
+
         section_a = random.sample(
-            section_a,
-            min(section_a_count, len(section_a))
+            section_a_pool,
+            section_a_count
         )
 
         section_b = random.sample(
-            section_b,
-            min(section_b_count, len(section_b))
+            section_b_pool,
+            section_b_count
         )
 
         section_c = random.sample(
-            section_c,
-            min(section_c_count, len(section_c))
+            section_c_pool,
+            section_c_count
         )
 
+        # -----------------------------------------
+        # COMBINE QUESTIONS
+        # -----------------------------------------
+
         selected_questions = section_a + section_b + section_c
+
+        # -----------------------------------------
+        # SEND DATA TO QUESTION PAPER
+        # -----------------------------------------
 
         return render(request, 'question_paper.html', {
             'questions': selected_questions,
@@ -118,7 +161,7 @@ def home(request):
             'academic_year': academic_year,
             'exam_type': exam_type,
             'units': units,
-            'marks': marks,
+            'marks': total_marks,
             'difficulty': difficulty,
             'question_type': question_type,
         })

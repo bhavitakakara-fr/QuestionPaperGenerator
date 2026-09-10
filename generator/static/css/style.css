@@ -238,3 +238,356 @@ body {
 }
 
 
+/* =========================================
+   PROFESSIONAL QUESTION PAPER
+   ========================================= */
+
+.paper-page {
+    min-height: 100vh;
+    background: #eef2f7;
+    padding: 35px 20px 60px;
+}
+
+
+/* ---------- ACTION BUTTONS ---------- */
+
+.paper-actions {
+    max-width: 950px;
+    margin: 0 auto 22px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.paper-actions button,
+.paper-actions a {
+    font-family: Arial, sans-serif;
+    padding: 11px 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.primary-action {
+    border: none;
+    background: #123b70;
+    color: white;
+}
+
+.primary-action:hover {
+    background: #0d2e59;
+}
+
+.secondary-action {
+    border: 1px solid #123b70;
+    background: white;
+    color: #123b70;
+}
+
+.secondary-action:hover {
+    background: #f1f5f9;
+}
+
+
+/* ---------- A4 PAPER ---------- */
+
+.question-paper {
+    width: 100%;
+    max-width: 950px;
+    min-height: 1120px;
+    margin: 0 auto;
+    padding: 48px 55px;
+    background: white;
+    border: 1px solid #d8dee8;
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.12);
+    color: #172033;
+}
+
+
+/* ---------- COLLEGE HEADER ---------- */
+
+.paper-header {
+    text-align: center;
+}
+
+.college-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+
+.college-logo-placeholder {
+    width: 82px;
+    height: 82px;
+    border: 2px solid #123b70;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #123b70;
+    font-size: 20px;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.college-title h1 {
+    margin: 0;
+    color: #123b70;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    line-height: 1.25;
+    letter-spacing: 0.3px;
+}
+
+.college-title p {
+    margin-top: 7px;
+    color: #374151;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.header-line {
+    height: 1px;
+    background: #123b70;
+    margin: 20px 0 15px;
+}
+
+.paper-header > h2 {
+    margin: 0 0 22px;
+    color: #172033;
+    font-family: Georgia, serif;
+    font-size: 21px;
+    letter-spacing: 1px;
+}
+
+
+/* ---------- INFORMATION TABLE ---------- */
+
+.paper-info-table {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr 1.4fr;
+    border: 1px solid #9fb2ca;
+    margin-bottom: 28px;
+}
+
+.info-label,
+.info-value {
+    min-height: 38px;
+    padding: 9px 12px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #cbd5e1;
+    border-bottom: 1px solid #cbd5e1;
+    font-size: 13px;
+}
+
+.info-label {
+    background: #edf3f9;
+    color: #17365f;
+    font-weight: 700;
+}
+
+.info-value {
+    color: #1f2937;
+}
+
+.info-value:nth-child(4n) {
+    border-right: none;
+}
+
+.info-label:nth-last-child(-n+2),
+.info-value:nth-last-child(-n+2) {
+    border-bottom: none;
+}
+
+
+/* ---------- SECTIONS ---------- */
+
+.paper-section {
+    margin-top: 27px;
+}
+
+.section-title {
+    background: #eaf1f8;
+    border-top: 1px solid #c5d5e7;
+    border-bottom: 1px solid #c5d5e7;
+    padding: 8px 12px;
+    text-align: center;
+}
+
+.section-title h3 {
+    margin: 0;
+    color: #123b70;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 0.7px;
+}
+
+.section-instruction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 4px 8px;
+    color: #27364a;
+    font-size: 13px;
+}
+
+.section-instruction strong {
+    color: #123b70;
+    font-size: 13px;
+}
+
+
+/* ---------- QUESTIONS ---------- */
+
+.paper-question {
+    display: grid;
+    grid-template-columns: 35px 1fr 55px;
+    gap: 8px;
+    padding: 10px 4px;
+    border-bottom: 1px dotted #cbd5e1;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.question-number {
+    font-weight: 700;
+    color: #172033;
+}
+
+.question-content {
+    color: #1f2937;
+}
+
+.question-mark {
+    text-align: right;
+    white-space: nowrap;
+    color: #123b70;
+    font-weight: 700;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.paper-footer {
+    margin-top: 45px;
+}
+
+.end-line {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    color: #123b70;
+    font-family: Georgia, serif;
+    font-size: 12px;
+}
+
+.end-line span {
+    height: 1px;
+    flex: 1;
+    background: #9fb2ca;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+    padding-top: 10px;
+    border-top: 1px solid #9fb2ca;
+    color: #374151;
+    font-family: Georgia, serif;
+    font-size: 12px;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 700px) {
+
+    .paper-page {
+        padding: 20px 10px;
+    }
+
+    .paper-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .question-paper {
+        padding: 30px 22px;
+    }
+
+    .college-brand {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .college-title h1 {
+        font-size: 20px;
+    }
+
+    .paper-info-table {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    .paper-question {
+        grid-template-columns: 28px 1fr 45px;
+        font-size: 13px;
+    }
+}
+
+
+/* ---------- PRINT ---------- */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+    }
+
+    .paper-page {
+        padding: 0;
+        background: white;
+    }
+
+    .paper-actions {
+        display: none;
+    }
+
+    .question-paper {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .section-title,
+    .info-label {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .paper-section {
+        break-inside: avoid;
+    }
+
+    .paper-question {
+        break-inside: avoid;
+    }
+}
+
+
