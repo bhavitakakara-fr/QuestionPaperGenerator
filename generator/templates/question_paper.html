@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Generated Question Paper</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="paper-page">
+
+        <div class="paper-actions">
+            <button onclick="window.print()">Download / Print</button>
+            <a href="/home/">Generate Another</a>
+        </div>
+
+
+        <div class="question-paper">
+
+            <div class="college-header">
+
+                <h1>ADITYA COLLEGE OF ENGINEERING AND TECHNOLOGY</h1>
+
+                <p>QUESTION PAPER</p>
+
+            </div>
+
+
+            <div class="paper-info">
+
+                <div>
+                    <strong>Branch:</strong>
+                    {{ branch }}
+                </div>
+
+                <div>
+                    <strong>Semester:</strong>
+                    {{ semester }}
+                </div>
+
+                <div>
+                    <strong>Academic Year:</strong>
+                    {{ academic_year }}
+                </div>
+
+                <div>
+                    <strong>Exam:</strong>
+                    {{ exam_type }}
+                </div>
+
+            </div>
+
+
+            <div class="subject-header">
+
+                <h2>{{ subject }}</h2>
+
+                <div class="exam-details">
+                    <span><strong>Time:</strong> 3 Hours</span>
+                    <span><strong>Max Marks:</strong> {{ marks }}</span>
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <section class="question-section">
+
+    <div class="section-heading">
+        <h3>SECTION - A</h3>
+        <p>Answer all questions</p>
+    </div>
+
+    {% for item in questions %}
+        {% if item.marks == 2 %}
+            <div class="paper-question">
+                <div class="question-text">
+                    <strong>{{ forloop.counter }}.</strong>
+                    {{ item.question }}
+                </div>
+
+                <div class="question-marks">
+                    [{{ item.marks }} Marks]
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</section>
+
+
+<section class="question-section">
+
+    <div class="section-heading">
+        <h3>SECTION - B</h3>
+        <p>Answer the following questions</p>
+    </div>
+
+    {% for item in questions %}
+        {% if item.marks == 5 %}
+            <div class="paper-question">
+                <div class="question-text">
+                    <strong>{{ forloop.counter }}.</strong>
+                    {{ item.question }}
+                </div>
+
+                <div class="question-marks">
+                    [{{ item.marks }} Marks]
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</section>
+
+
+<section class="question-section">
+
+    <div class="section-heading">
+        <h3>SECTION - C</h3>
+        <p>Answer the following questions</p>
+    </div>
+
+    {% for item in questions %}
+        {% if item.marks == 10 %}
+            <div class="paper-question">
+                <div class="question-text">
+                    <strong>{{ forloop.counter }}.</strong>
+                    {{ item.question }}
+                </div>
+
+                <div class="question-marks">
+                    [{{ item.marks }} Marks]
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</section>
+
+            <div class="paper-footer">
+                <p>*** END OF QUESTION PAPER ***</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

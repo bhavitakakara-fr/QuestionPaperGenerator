@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Question Paper Generator</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <header class="dashboard-header">
+            <div>
+                <h1>ADITYA COLLEGE OF ENGINEERING AND TECHNOLOGY</h1>
+                <p>Question Paper Generator</p>
+            </div>
+
+            <a href="/" class="logout-btn">Logout</a>
+        </header>
+
+
+        <main class="dashboard-content">
+
+            <div class="welcome-section">
+                <h2>Generate Question Paper</h2>
+                <p>Create a professional question paper using your requirements.</p>
+            </div>
+
+
+            <div class="generator-card">
+
+                <div class="card-header">
+                    <h3>Question Paper Details</h3>
+                    <p>Enter the details below to generate your paper.</p>
+                </div>
+
+
+                <form method="POST">
+    {% csrf_token %}
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                placeholder="Enter subject name"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+    <label for="branch">Branch</label>
+    <select id="branch" name="branch">
+        <option value="">Select branch</option>
+        <option value="data-science">Data Science</option>
+        <option value="cse">Computer Science Engineering</option>
+        <option value="ece">Electronics & Communication Engineering</option>
+        <option value="eee">Electrical & Electronics Engineering</option>
+        <option value="mechanical">Mechanical Engineering</option>
+        <option value="civil">Civil Engineering</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="semester">Semester</label>
+    <select id="semester" name="semester">
+        <option value="">Select semester</option>
+        <option value="1-1">1-1</option>
+        <option value="1-2">1-2</option>
+        <option value="2-1">2-1</option>
+        <option value="2-2">2-2</option>
+        <option value="3-1">3-1</option>
+        <option value="3-2">3-2</option>
+        <option value="4-1">4-1</option>
+        <option value="4-2">4-2</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="academic_year">Academic Year</label>
+    <select id="academic_year" name="academic_year">
+        <option value="">Select academic year</option>
+        <option value="2026-27">2026-27</option>
+        <option value="2025-26">2025-26</option>
+        <option value="2024-25">2024-25</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="exam_type">Exam Type</label>
+    <select id="exam_type" name="exam_type">
+        <option value="">Select exam type</option>
+        <option value="mid-1">Mid-I Examination</option>
+        <option value="mid-2">Mid-II Examination</option>
+        <option value="semester">Semester Examination</option>
+        <option value="model">Model Examination</option>
+        <option value="internal">Internal Examination</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="units">Units</label>
+    <select id="units" name="units">
+        <option value="">Select units</option>
+        <option value="all">All Units</option>
+        <option value="1">Unit 1</option>
+        <option value="2">Unit 2</option>
+        <option value="3">Unit 3</option>
+        <option value="4">Unit 4</option>
+        <option value="5">Unit 5</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="question_type">Question Type</label>
+    <select id="question_type" name="question_type">
+        <option value="">Select question type</option>
+        <option value="mcq">Multiple Choice Questions (MCQ)</option>
+        <option value="short">Short Answer Questions</option>
+        <option value="long">Long Answer Questions</option>
+        <option value="mixed">Mixed</option>
+    </select>
+</div>
+
+
+                        <div class="form-group">
+                            <label for="marks">Total Marks</label>
+                            <input
+                                type="number"
+                                id="marks"
+                                name="marks"
+                                placeholder="e.g. 60"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty Level</label>
+                            <select id="difficulty" name="difficulty">
+                                <option value="balanced">Balanced</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="generate-btn">
+                        Generate Question Paper
+                    </button>
+
+                </form>
+                {% if questions %}
+    <div class="questions-section">
+
+        <h2>Generated Questions</h2>
+
+        {% for item in questions %}
+            <div class="question-card">
+                <span class="question-number">
+                    Question {{ forloop.counter }}
+                </span>
+
+                <p>{{ item.question }}</p>
+
+                <small>
+                    Unit {{ item.unit }} |
+                    {{ item.marks }} Marks |
+                    {{ item.difficulty|title }}
+                </small>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endif %}
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
